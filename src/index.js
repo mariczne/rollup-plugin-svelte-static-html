@@ -1,7 +1,7 @@
 import vm from 'vm'
 import fs from 'fs-extra'
 import { rollup } from 'rollup'
-import resolve from 'rollup-plugin-node-resolve'
+import resolve from '@rollup/plugin-node-resolve'
 import svelte from 'rollup-plugin-svelte'
 import sveltePreprocess from 'svelte-preprocess'
 import posthtml from 'posthtml'
@@ -50,7 +50,11 @@ export default function svelteStaticHtml(options = {}) {
           resolve(),
           svelte({
             preprocess: preprocess || sveltePreprocess(),
-            generate: 'ssr'
+            emitCss: !inlineCss,
+            compilerOptions: {
+              generate: 'ssr',
+              css: inlineCss
+            }
           })
         ]
       })

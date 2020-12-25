@@ -98,6 +98,17 @@ describe('Generate html', () => {
     expect(await readFile('dist/index.html')).toBe(await readFile('samples/preprocess-scss.html'))
   })
 
+  test('Preprocess TypeScript', async () => {
+    await build({
+      component: 'src/preprocess-ts/App.svelte',
+      output: 'dist/index.html'
+    })
+
+    expect(await fs.pathExists('dist/app.js')).toBe(true)
+    expect(await fs.pathExists('dist/index.html')).toBe(true)
+    expect(await readFile('dist/index.html')).toBe(await readFile('samples/preprocess-ts.html'))
+  })
+
   test('Template', async () => {
     await build({
       component: 'src/template/App.svelte',

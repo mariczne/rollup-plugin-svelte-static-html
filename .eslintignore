@@ -1,0 +1,2 @@
+## Ignore one file that uses TypeScript
+tests/fixtures/src/preprocess-ts
